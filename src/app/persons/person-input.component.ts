@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PersonsService } from './persons.service';
 
 @Component({
   selector: 'app-person-input',
@@ -9,8 +10,13 @@ import { Component } from '@angular/core';
 export class PersonInputComponent {
   enteredPersonName = '';
 
-  onCreatePerson() {
-    console.log('Created a person: ' + this.enteredPersonName);
+  constructor(private prsService: PersonsService) {
+
+  }
+
+  onCreatedPerson() {
+    console.log('Element added: ' + this.enteredPersonName);
+    this.prsService.addPerson(this.enteredPersonName);
     this.enteredPersonName = '';
   }
 }
